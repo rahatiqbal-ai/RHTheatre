@@ -1,0 +1,30 @@
+{
+  "name": "story-to-video-builder",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.30.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vitest": "^0.34.1",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "jsdom": "^22.1.0"
+  }
+}

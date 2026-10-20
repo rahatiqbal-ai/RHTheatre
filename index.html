@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recoded Heart Theatre</title>
+    <meta name="description" content="A professional tool for generating consistent video prompts with character references, visual styles, and multi-scene storyboarding." />
+    <meta property="og:title" content="Recoded Heart Theatre" />
+    <meta property="og:description" content="A professional tool for generating consistent video prompts with character references, visual styles, and multi-scene storyboarding." />
+    <script>
+      window.process = window.process || { env: { NODE_ENV: 'development' } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      
+      :root {
+        --bg-color: #0d0d0d;
+        --card-bg: #121212;
+        --text-color: #ffffff;
+        --glass-bg: rgba(15, 15, 15, 0.75);
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --accent-red: #ff0000;
+        --input-bg: #000000;
+        --sidebar-bg: #0a0a0a;
+        --ruby-glow: rgba(255, 0, 0, 0.4);
+        --highlight-shimmer: rgba(255, 255, 255, 0.1);
+      }
+
+      body.light-theme {
+        --bg-color: #ffffff;
+        --card-bg: #ffffff;
+        --text-color: #000000;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(0, 0, 0, 0.14);
+        --input-bg: #f8fafc;
+        --sidebar-bg: #f8fafc;
+        --ruby-glow: rgba(255, 0, 0, 0.15);
+        --highlight-shimmer: rgba(0, 0, 0, 0.04);
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.5s ease, color 0.5s ease;
+        margin: 0;
+        overflow-y: auto;
+      }
+      
+      .app-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-color: var(--bg-color);
+        background-image: 
+          radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 40%),
+          radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 40%);
+        transition: background-color 0.5s ease;
+        pointer-events: none;
+      }
+
+      .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        box-shadow: 
+          0 12px 40px -10px rgba(0, 0, 0, 0.4),
+          inset 0 1px 1px 0 var(--highlight-shimmer);
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .cinematic-border {
+        position: relative;
+        border: 1px solid var(--glass-border) !important;
+        background-clip: padding-box;
+      }
+      
+      .cinematic-border::before {
+        content: '';
+        position: absolute;
+        top: -1px; bottom: -1px; left: -1px; right: -1px;
+        z-index: -1;
+        border-radius: inherit;
+        background: linear-gradient(135deg, var(--highlight-shimmer) 0%, transparent 40%, transparent 60%, var(--accent-red) 100%);
+        opacity: 0.6;
+        transition: opacity 0.4s ease;
+      }
+
+      .btn-ultra {
+        background: linear-gradient(135deg, #ff0000 0%, #b30000 100%);
+        color: #ffffff !important;
+        box-shadow: 0 4px 20px -2px var(--ruby-glow);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 800;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-ultra:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px -2px rgba(255, 0, 0, 0.5);
+        filter: brightness(1.1);
+      }
+
+      @keyframes vapor-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+
+      .vapor-conic {
+          animation: vapor-rotate 20s linear infinite;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, transparent, var(--accent-red), transparent);
+        border-radius: 10px;
+      }
+      
+      .theme-text {
+        color: var(--text-color) !important;
+        transition: color 0.5s ease;
+      }
+      
+      .theme-bg {
+        background-color: var(--bg-color) !important;
+        transition: background-color 0.5s ease;
+      }
+
+      .theme-card {
+        background-color: var(--card-bg) !important;
+        border: 1px solid var(--glass-border);
+        transition: all 0.5s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-bg"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

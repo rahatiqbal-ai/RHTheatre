@@ -1,0 +1,9 @@
+{
+  "name": "Recoded Heart Theatre",
+  "description": "A professional tool for generating consistent video prompts with character references, visual styles, and multi-scene storyboarding.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
